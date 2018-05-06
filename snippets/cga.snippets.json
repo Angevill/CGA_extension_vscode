@@ -1,0 +1,40 @@
+{
+    "extrude op": {
+        "prefix":"extrude",
+        "body":[
+            "extrude(${distance})",
+            "$0"
+        ],
+        "description":"extrude"
+    },
+    "comp op": {
+        "prefix":"comp",
+        "body":[
+            "comp(${compSelector})",
+            "{",
+            "\t${selector1} : ${operations1} ",
+            "}",
+            "$0"
+        ]
+    },
+    "split op":{
+        "prefix":"split",
+        "body":[
+            "split(${splitAxis})",
+            "{",
+            "\t${size1} : ${operations1} ",
+            "}",
+            "$0"
+        ]
+    },
+    "flow control":{
+        "prefix":"case",
+        "body":[
+            "case: ${condition1}",
+            "\t${operations1}",
+            "else: ${condition999}",
+            "\t${operations999}",
+            "$0"
+        ]
+    }
+}

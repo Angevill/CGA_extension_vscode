@@ -1,0 +1,270 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "cga",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#predecessorshapes"
+		},
+		{
+			"include": "#operations"
+		},
+		{
+			"include": "#shape-attributes"
+		},
+		{
+			"include": "#builtin-functions"
+		},
+		{
+			"include": "#CGA-Utilities"
+		},
+		{
+			"include": "#annotations"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.cga",
+					"match": "\\b(case|else)\\b"
+				},
+				{
+					"name":"keyword.other.cga",
+					"match": "\\b(attr|const|import|style|version)\\b"
+				},
+				{
+					"name":"keyword.control.cga",
+					"match": "\\b([1-9][0-9]|[1-9])%"								
+				},
+				{
+					"name":"variable.parameter.cga",
+					"match": "(?<=attr)\\s+(\\w+)\\s+(?=\\=)"
+				}
+			]
+		},
+		"predecessorshapes":{
+			"patterns": [
+				{
+					"name":"entity.name.function.cga",
+					"match": "(^|\\b)(?!NIL)([A-Z]\\w+)+\\b"
+				}
+			]
+		},
+		"operations":{
+			"patterns": [
+				{
+					"name":"support.function.operation.geometry.creation.cga",
+					"match": "\\b(i|extrude|envelope|taper|roofGable|roofHip|roofPyramid|roofShed|innerRectangle|primitiveQuad|primitiveDisk|primitiveCube|primitiveSphere|primitiveCylinder|primitiveCone)\\b"
+				},
+				{
+					"name":"support.function.operation.geometry.subdivision.cga",
+					"match": "\\b(split(?!\\.)|splitArea|comp(?!\\.)|offset|setback|shapeL|shapeU|shapeO|scatter)\\b"
+				},
+				{
+					"name":"support.function.operation.geometry.manipulation.cga",
+					"match": "\\b(cleanupGeometry|convexify|deleteHoles|reverseNormals|setNormals|softenNormals|mirror|reduceGeometry|trim(?!\\.))\\b"
+				},
+				{
+					"name":"support.function.operation.texturing.cga",
+					"match": "\\b(texture|setupProjection|projectUV|translateUV|scaleUV|normalizeUV|tileUV|rotateUV|deleteUV)\\b"
+				},
+				{
+					"name":"support.function.operation.transformations.cga",
+					"match": "\\b(t|translate|s|r|rotate|center)\\b"
+				},
+				{
+					"name":"support.function.operation.scope.cga",
+					"match": "\\b(alignScopeToAxes|alignScopeToGeometry|rotateScope|setPivot|mirrorScope)\\b"
+				},
+				{
+					"name":"support.function.operation.flowcontrol.cga",
+					"match": "\\b(pop|push|NIL)\\b"
+				},
+				{
+					"name":"support.function.operation.context.cga",
+					"match": "\\b(label)\\b"
+				},
+				{
+					"name":"support.function.operation.attributes.cga",
+					"match": "\\b(set|color|report|print)\\b"
+				}
+			]
+		},
+		"shape-attributes":{
+			"patterns": [
+				{
+					"name":"support.constant.cga",
+					"match": "\\b(comp(\\.(sel|index|sel))?|initialShape(\\.(name|startRule|origin(\\.(p|o)(x|y|z))?))?|material(\\.(name|shader|opacity|reflectivity|shininess|colormap|dirtmap|specular(\\.(r|g|b))?))?|pivot(\\.(p|o)(x|y|z))?|scope(\\.(t|r|s)(x|y|z))?(\\.elevation)?|seedian|split(\\.(index|total))?|trim(\\.(horizontal|vertical))?)\\b"
+				}
+			]
+		},
+		"builtin-functions":{
+			"patterns": [
+				{
+					"name":"support.function.math.cga",
+					"match": "\\b(abs|acos|asin|atan|atan2|ceil|cos|exp|floor|isinf|isnan|ln|log10|pow|rint|sin|sqrt|tan)\\b"
+				},
+				{
+					"name":"support.function.probability.cga",
+					"match": "\\b(p|rand)\\b"
+				},
+				{
+					"name":"support.function.conversion.cga",
+					"match": "\\b(bool|float|isNull|sel|str)\\b"
+				},
+				{
+					"name":"support.function.string.cga",
+					"match": "\\b(count(?!\\))|find|len|substring)\\b"
+				},
+				{
+					"name":"support.function.geometry.cga",
+					"match": "\\b(geometry.area|geometry.angle|geometry.(du|dv)|geometry.height|geometry.isClosedSurface|geometry.isConcave|geometry.isInstanced|geometry.isOrientedgeometry.isPlanar|geometry.isRectangular|geometry.nEdges|geometry.nFaces|geometry.nHoles|geometry.nVertices|geometry.(uMin|uMax|vMin|vMax)|geometry.volume)\\b"
+				},
+				{
+					"name":"support.function.file.cga",
+					"match": "\\b(fileExists|fileSearch)\\b"
+				},
+				{
+					"name":"support.function.assetandimage.cga",
+					"match": "\\b(assetInfo|assetsSortRatio|assetsSortSize|imageInfo|imagesSortRatio)\\b"
+				},
+				{
+					"name":"support.function.occlusion.cga",
+					"match": "\\b(inside|overlaps|touches)\\b"
+				},
+				{
+					"name":"support.function.context.cga",
+					"match": "\\b(minimumDistance|contextCompare|contextCount)\\b"
+				},
+				{
+					"name":"support.function.miscellaneous.cga",
+					"match": "\\b(convert|getGeoCoord|getTreeKey|print)\\b"
+				}
+			]
+		},
+		"CGA-Utilities":{
+			"patterns": [
+				{
+					"name":"support.function.utility.string.cga",
+					"match": "\\b(findFirst|findLast|getPrefix|getRange|getSuffix|replace)\\b"
+				},
+				{
+					"name":"support.function.utility.stringlist.cga",
+					"match": "\\b(listAdd|listClean|listCount|listFirst|listIndex|listItem|listLast|listRandom|listRange|listRemove|listRemoveAll|listRetainAll|listSize|listTerminate)\\b"
+				},
+				{
+					"name":"support.function.utility.FAI.cga",
+					"match": "\\b(assetApproxRatio|assetApproxSize|assetBestRatio|assetBestSize|assetFitSize|fileBasename|fileDirectory|fileExtension|fileName|fileRandom|imageApproxRatio|imageBestRatio)\\b"
+				},
+				{
+					"name":"support.function.utility.math.cga",
+					"match": "\\b(clamp|max|min)\\b"
+				},
+				{
+					"name":"support.function.utility.color.cga",
+					"match": "\\b(colorHexToB|colorHexToG|colorHexToH|colorHexToO|colorHexToR|colorHexToS|colorHexToV|colorHSVToHex|colorHSVOToHex|colorRamp|colorRGBToHex|colorRGBOToHex)\\b"
+				}
+			]
+		},
+		"annotations":{
+			"patterns": [
+				{
+					"name":"support.variable.cga",
+					"match": "@(Angle|Color|Description|Directory|Distance|Enum|File|Group|Handle|Hidden|InEdge|InMesh|InPoint|InPointCloud|InPolygon|Order|Out|Percent|Range|StartRule)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.cga",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.cga",
+					"match": "\\\\."
+				}
+			]
+		},
+		"operators":{
+			"patterns": [
+				{
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"captures": {
+						"1": {
+							"name": "meta.toc-list.banner.block.cga"
+						}
+					},
+					"match": "^/\\* =(\\s*.*?)\\s*= \\*/$\\n?",
+					"name": "comment.block.cga"
+				},
+				{
+					"begin": "/\\*",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.begin.cga"
+						}
+					},
+					"end": "\\*/",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.end.cga"
+						}
+					},
+					"name": "comment.block.cga"
+				},
+				{
+					"match": "\\*/.*\\n",
+					"name": "invalid.illegal.stray-comment-end.cga"
+				},
+				{
+					"captures": {
+						"1": {
+							"name": "meta.toc-list.banner.line.cga"
+						}
+					},
+					"match": "^// =(\\s*.*?)\\s*=\\s*$\\n?",
+					"name": "comment.line.banner.cga"
+				},
+				{
+					"begin": "(^[ \\t]+)?(?=#)",
+					"beginCaptures": {
+					  "1": {
+						"name": "punctuation.whitespace.comment.leading.cga"
+					  }
+					},
+					"end": "(?!\\G)",
+					"patterns": [
+					  {
+						"begin": "#",
+						"beginCaptures": {
+						  "0": {
+							"name": "punctuation.definition.comment.cga"
+						  }
+						},
+						"end": "\\n",
+						"name": "comment.line.number-sign.cga"
+					  }
+					]
+				}
+			]
+		}
+	},
+	"scopeName": "source.cga"
+}

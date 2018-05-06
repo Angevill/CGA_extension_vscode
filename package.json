@@ -1,0 +1,32 @@
+{
+    "name": "CGA",
+    "displayName": "CGA",
+    "description": "rule-based language for cityengine",
+    "version": "0.0.1",
+    "publisher": "ArvinLee",
+    "engines": {
+        "vscode": "^1.23.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "cga",
+            "aliases": ["CGA", "cga"],
+            "extensions": [".cga"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "cga",
+            "scopeName": "source.cga",
+            "path": "./syntaxes/cga.tmLanguage.json"
+        }],
+        "snippets": [
+            {
+                "language": "cga",
+                "path": "./snippets/cga.snippets.json"
+            }
+        ]
+    }
+}
